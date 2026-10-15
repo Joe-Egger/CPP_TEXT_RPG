@@ -8,21 +8,32 @@
 #ifndef GAME_HPP
 #define GAME_HPP
 
+#include <wx/wx.h>
+
+#include <string>
+
+#include "Character.hpp"
+#include "Screen.hpp"
+
 class Game
 {
-    public:
-        Game();
-        ~Game();
+public:
+    Game();
+    ~Game() override;
 
-        void Run();
+    void Run();
 
-    private:
-        bool mIsRunning;
+private:
+    bool mIsRunning;
 
-        bool Init();
-        void ProcessInputs();
-        void Update();
-        void Draw();
+    Character mCharacter;
+
+
+    bool Init();
+    void ProcessInputs();
+    void Update();
+    void Draw();
+
 };
 
 #endif

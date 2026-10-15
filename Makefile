@@ -1,5 +1,6 @@
 CXX = g++
-CXXFLAGS = -Wall -Wextra -Iinclude
+CXXFLAGS = -Wall -Wextra -Iinclude $(shell wx-config --cxxflags)
+LIBS = $(shell wx-config --libs)
 
 BUILD_DIR = build
 TARGET = $(BUILD_DIR)/CPP_TEXT_RPG
@@ -13,11 +14,11 @@ all: $(TARGET)
 
 $(TARGET): $(OBJECTS)
 	@mkdir -p $(dir $@)
-		$(CXX) $(CXXFLAGS) $^ -o $@ $(LIBS)
+	$(CXX) $^ -o $@ $(LIBS)
 
 $(BUILD_DIR)/%.o: src/%.cpp
 	@mkdir -p $(dir $@)
-		$(CXX) $(CXXFLAGS) -c $< -o $@
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 run: $(TARGET)
 	./$(TARGET)
